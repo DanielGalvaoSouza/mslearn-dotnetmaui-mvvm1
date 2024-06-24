@@ -5,10 +5,28 @@ namespace MovieCatalog.ViewModels;
 
 public class MovieListViewModel: ObservableObject
 {
+    private MovieViewModel _selectedMovie;
+
+    public MovieViewModel SelectedMovie
+    {
+        get => _selectedMovie;
+        set => SetProperty(ref _selectedMovie, value);
+    }
+
     public ObservableCollection<MovieViewModel> Movies { get; set; }
 
-    public MovieListViewModel() =>
+    public MovieListViewModel()
+    {
         Movies = [];
+
+        _selectedMovie = new (
+            new Models.Movie(string.Empty, 
+                string.Empty, 
+                string.Empty, 
+                DateTime.Now.Year));
+
+    }
+        
 
     public async Task RefreshMovies()
     {
@@ -16,6 +34,7 @@ public class MovieListViewModel: ObservableObject
 
         foreach (Models.Movie movie in moviesData)
             Movies.Add(new MovieViewModel(movie));
+
     }
 
     public void DeleteMovie(MovieViewModel movie) =>
