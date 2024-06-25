@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace MovieCatalog.ViewModels;
 
@@ -15,6 +16,8 @@ public class MovieListViewModel: ObservableObject
 
     public ObservableCollection<MovieViewModel> Movies { get; set; }
 
+    public ICommand GiveBonus { get; private set; }
+
     public MovieListViewModel()
     {
         Movies = [];
@@ -25,8 +28,22 @@ public class MovieListViewModel: ObservableObject
                 string.Empty, 
                 DateTime.Now.Year));
 
+        GiveBonus = new Command(GiveBonusExecute, GiveBonusCanExecute);
+
     }
-        
+
+    async void GiveBonusExecute()
+    {
+        //logic for giving bonus
+        await 
+    }
+
+    bool GiveBonusCanExecute()
+    {
+        //logic for deciding if "give bonus" button should be enabled.
+        return false;
+    }
+
 
     public async Task RefreshMovies()
     {

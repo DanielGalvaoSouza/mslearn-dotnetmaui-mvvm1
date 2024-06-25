@@ -18,4 +18,9 @@
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
+    <Button Text="Give Bonus" Command="{Binding GiveBonus}">
+        <Button.CommandParameter>
+            <x:Int32>25</x:Int32>
+        </Button.CommandParameter>
+    </Button>
 </ContentPage>
